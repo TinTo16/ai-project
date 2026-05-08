@@ -1,18 +1,10 @@
-Sure! Here's a simple Express API that returns JSON data when requested with GET method in your terminal/command line using NodeJS (Express). 
+Sure! Here is a simple Express API setup using NodeJS for the HTTP requests (GET/POST). 
 
-Firstly install the necessary packages by running this command on Terminal or Command Prompt if you haven’t installed them yet. Open up two terminals and run these commands:
-```sh
-npm init -y # Initialize a new node project with NPM package manager, create "package.json" file automatically in your current directory 
-npm install express --save   # Install Express framework for NodeJS to our application via npm (It will save it into the dependencies part of packages)
-```   
-Now let's write some code and run this API:
-1st terminal - Start server with Nodemon. This can be used while debugging your app, which allows you to see changes immediately without having to restart or reload NodeJS runtime each time :  (To start the application use npm install nodemon --save-dev)   and run it by typing:
-```sh   
-npx nodemon server.js     # Starts a development session on port specified in your package json scripts if file changes are detected, app will reload automatically with live coding  (you can change the default script to any other command you want from 'start' or anything else).  
-or npm start               # Run application using node server.js by running this as a normal NodeJS process - not in nodemon mode    . In real development, use "npx" instead of “npm” for the above commands to ensure that it uses NPM’s versions and works correctly on your machine  
-```    
-2nd terminal (client) : To test our API we can make requests from a client. Here're some examples using 'axios', which is popular HTTP request library in JavaScript:  use npm install axio to add it into the dependencies of this project or, if you prefer not to mess up with NPM packages for your specific purpose;
-```sh   
-npm i --save axios   # Install Axios as dependency. This can be used while making HTTP request from any part in our application (not just client).  In terminal use 'axios GET http://localhost:3001/users' to make an API call which you defined on server file and return the data
-```    
-Remember, this is a very basic setup. For more complex applications with database integration or other features such as middleware etc., then additional packages may be required for managing requests in ExpressJS application like body-parser(to handle JSON payloads), express validator (validate request parameters) and cors to enable CORS on your API endpoints, among others if needed.
+```javascript
+const express = require('express'); // Importing built-in module of nodejs to use http connections with server side events such as routing etc. in our application will be handled by this, which can also manage static files and serve up all content on a specified folder at the same time via middleware like bodyparser
+const app = express(); 
+app.use(express.json()) // This is for parsing incoming requests with JSON payloads (like POST/PUT HTTP request) in Express based Applications, can also be used if you are sending or receiving data as a form-data type and not json contenttype like 'application/x-www-form-urlencoded'
+app.use(express.static('public')) // Serve static files from the public folder (only supporting GET requests) to provide frontend interface with express app — for instance, index.html or client side scripts in a production environment which serve as backends and can handle HTTP/HTTPS Requests & Responses
+app.listen(3001); // To start the server we will call listen method on our application object where it listens to requests at ‘http://localhost:3002’, you may change port number if required by your system settings and environment variables or any other configurations provided in setup process
+```  
+The above code creates a basic Express API. The `app` variable is an instance of the express app which we then start using it to listen on specified ports (in this case 3001 for testing). This will work as follows: when you send HTTP requests, they are processed by your routes defined in '/routes' or 'controllers'.
